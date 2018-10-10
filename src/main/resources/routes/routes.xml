@@ -2,7 +2,7 @@
    <route id="direct-reliable">
       <from uri="direct:start"/>
       <onException>
-           <exception>org.nhindirect.monitor.dao.AggregationVersionException</exception>
+           <exception>org.nhindirect.monitor.repository.AggregationVersionException</exception>
            <redeliveryPolicy maximumRedeliveries="-1" 
                 redeliveryDelay="200" collisionAvoidanceFactor="0.15"/>
       </onException>         
