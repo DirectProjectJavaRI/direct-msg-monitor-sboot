@@ -1,0 +1,14 @@
+---
+applications:
+- name: direct-message-monitor
+  instances: 1
+  buildpack: java_buildpack
+  path: target/direct-msg-monitor-sboot-6.0-SNAPSHOT.jar
+  env: 
+    spring.cloud.config.label: master    
+  services:
+    - directhisp-postgress
+    - directhisp-config-server
+    - directhisp-rabbit
+    - directhisp-eureka    
+    
