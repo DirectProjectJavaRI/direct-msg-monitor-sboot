@@ -3,16 +3,23 @@ info.build.artifact: "@project.artifactId@"
 info.build.name: "@project.name@"
 info.build.description: "@project.description@"
 info.build.version: "@project.version@"
-server.port: "8080"
-security.basic.enabled: false
-management.security.enabled: false
-security.ignored: /**
+server.port: "8081"
 
 spring: 
   cloud: 
     stream: 
-      bindings: 
-        direct-tx-monitoring-input: 
+      # Need to define an explicit source binding name since we are using a StreamBridge
+      source: direct-smtp-gateway-message  
+          
+      function:
+        definition: directTxMonitoring
+
+      bindings:
+      
+        direct-smtp-gateway-message-out-0:
+          destination: direct-smtp-mq-gateway 
+          
+        directTxMonitoring-in-0: 
           destination: direct-tx-monitoring
           group: direct-tx-monitoring-stream-group
           consumer:
@@ -20,3 +27,19 @@ spring:
             maxAttempts: 10
             backOffInitialInterval: 15000
             backOffMaxInterval: 120000   
+            
+#Default username and password
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: '{bcrypt}$2a$04$WQsYXSBOnycO1/7E9bKUVevWX3.Gxv2V6ZfYx9UKoy3lm9.4TjU7e'
+
+#Default Derby Database Settings.  This is not recommended for production use
+#and not fit for purpose for ephemeral deployments (you are almost guaranteed to lose your data if 
+#using an ephemeral environment)
+  datasource:
+    url: jdbc:derby:msgmonitor;create=true
+    username: nhind
+    password: nhind          
