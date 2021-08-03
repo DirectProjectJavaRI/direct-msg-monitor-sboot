@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.nhind</groupId>
 	<artifactId>direct-msg-monitor-sboot</artifactId>
-	<version>8.0.0-SNAPSHOT</version>
+	<version>8.0.0</version>
 	<packaging>jar</packaging>
 	<name>NHIN Direct Java RI message monitor spring boot application</name>
     <description>NHIN Direct Java RI message monitor spring boot application</description>	
@@ -55,7 +55,7 @@
 	        <dependency>
 	            <groupId>io.pivotal.spring.cloud</groupId>
 	            <artifactId>spring-cloud-services-dependencies</artifactId>
-	            <version>3.2.1.RELEASE</version>
+	            <version>3.3.0</version>
 	            <type>pom</type>
 	            <scope>import</scope>
 	        </dependency>					
@@ -134,12 +134,12 @@
 		<dependency>
 			<groupId>org.nhind</groupId>
 			<artifactId>direct-msg-monitor</artifactId>
-			<version>8.0.0-SNAPSHOT</version>
+			<version>8.0.0</version>
 		</dependency>	
 		<dependency>
 			<groupId>org.nhind</groupId>
 			<artifactId>direct-common</artifactId>
-			<version>8.0.0-SNAPSHOT</version>	
+			<version>8.0.0</version>	
 		</dependency>	
 		<dependency>
 		    <groupId>org.apache.camel</groupId>
