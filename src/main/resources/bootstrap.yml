@@ -1,0 +1,21 @@
+spring:
+  application:
+    name:  direct-msg-monitor
+
+  jpa:
+    open_in_view: false
+
+camel:
+  springboot:
+    xmlRoutes: classpath:routes/routes.xml
+
+#Don't use rabbit as part of the health check
+management:
+  health:
+    rabbit:
+      enabled: false
+
+direct:
+  msgmonitor:
+    dsnSender:
+      useStreamsSender: true
