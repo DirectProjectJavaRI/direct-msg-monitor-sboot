@@ -6,6 +6,12 @@ info.build.version: "@project.version@"
 server.port: "8081"
 
 spring: 
+  application:
+    name:  direct-msg-monitor
+
+  jpa:
+    open_in_view: false	
+
   cloud: 
     stream: 
       # Need to define an explicit source binding name since we are using a StreamBridge
@@ -39,7 +45,22 @@ spring:
 #Default Derby Database Settings.  This is not recommended for production use
 #and not fit for purpose for ephemeral deployments (you are almost guaranteed to lose your data if 
 #using an ephemeral environment)
-  datasource:
-    url: jdbc:derby:msgmonitor;create=true
-    username: nhind
-    password: nhind          
+#  datasource:
+#    url: jdbc:h2:file:./embedded-db/msgmonitor;NON_KEYWORDS=VALUE
+#    username: sa
+#    password:         
+
+
+camel:
+  springboot:
+    routes-include-pattern: classpath:routes/routes.xml		
+
+management:
+  health:
+    rabbit:
+      enabled: false
+
+direct:
+  msgmonitor:
+    dsnSender:
+      useStreamsSender: true
